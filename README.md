@@ -1,2 +1,2 @@
 # Fila
-Exemplo de fila
+Exemplo de fila estática 

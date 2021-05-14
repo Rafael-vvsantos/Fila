@@ -1,11 +1,11 @@
-void inicializador();
+void enfileirar(int valor);
 
-bool enfileirar(int valor);
+int desenfileirar();
 
-bool desinfileirar(int valor);
+int vazia();
 
-bool vazia();
-
-bool cheia();
+int cheia();
 
 void exibir();
+
+void esvaziar();

@@ -2,59 +2,102 @@
 #include <stdlib.h>
 #include "fila.h"
 
-#define TAM_FILA 5
+#define TAM_FILA 3
 
-int fila[TAM_FILA], ultimaPosicao , primeiroPosicao;
+int fila[TAM_FILA], ultimaPosicao = 0;
 
-void inicializador()
+void enfileirar(int valor)
 {
-    primeiroPosicao = 0;
-    ultimaPosicao = -1;
+  if (cheia())
+  {
+    printf("Fila cheia!\n");
+  }
+  else
+  {
+    fila[ultimaPosicao] = valor;
+    ultimaPosicao++;
+  }
 }
 
-bool vazia()
+int desenfileirar()
 {
-    return primeiroPosicao > ultimaPosicao;
-}
+  int itemRetirado = 0;
 
-bool cheia()
-{
-    return ultimaPosicao > TAM_FILA;
-}
+  if (vazia())
+  {
+    printf(" Fila vazia! \n");
+  }
+  else
+  {
 
-bool enfileirar(int valor)
-{
-    if (cheia())
+    itemRetirado = fila[0];
+
+    for (int i = 0; i < ultimaPosicao - 1; i++)
     {
-        return false;
+      fila[i] = fila[i + 1];
     }
-    else
-    {
-        ultimaPosicao++;
-        fila[ultimaPosicao] = valor;
-        return true;
-    }
+
+    ultimaPosicao--;
+  }
+
+  return itemRetirado;
 }
 
-bool desinfileirar(int valor)
+int vazia()
 {
-
-    if (vazia())
-    {
-        return false;
-    }
-    else
-    {
-        primeiroPosicao++;
-        fila[primeiroPosicao] = primeiroPosicao;
-        return true;
-    }
+  if (ultimaPosicao == 0)
+  {
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
 }
 
+int cheia()
+{
+  if (ultimaPosicao == TAM_FILA)
+  {
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
+}
 void exibir()
 {
-    for (int i = 0; i < TAM_FILA; i++)
+  if (vazia())
+  {
+    printf("Fila vazia !\n");
+  }
+  else
+  {
+    for (int i = 0; i < ultimaPosicao; i++)
     {
-        printf("%i\n", fila[i]);
+      printf("%i\n", fila[i]);
     }
+  }
+}
+
+void esvaziar()
+{
+
+  if (vazia())
+  {
+    printf(" Fila vazia! \n");
+  }
+  else
+  {
+
+    for (int i = 0; i < ultimaPosicao + TAM_FILA; i++)
+    {
+      fila[i] = fila[i + 1];
+    }
+  
+    ultimaPosicao--;
+  }
+
+
 }
